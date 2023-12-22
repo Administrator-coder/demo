@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MainStage">
+   <children>
+      <Button fx:id="InformationEntry" layoutX="98.0" layoutY="97.0" mnemonicParsing="false" onAction="#EnterInformation" prefHeight="76.0" prefWidth="126.0" text="健康信息录入" />
+      <Button fx:id="InformationInquiry" layoutX="368.0" layoutY="97.0" mnemonicParsing="false" onAction="#InquireInformation" prefHeight="76.0" prefWidth="126.0" text="健康信息查询" />
+      <Button fx:id="InformationChange" layoutX="98.0" layoutY="251.0" mnemonicParsing="false" onAction="#ChangeInformation" prefHeight="76.0" prefWidth="126.0" text="健康信息修改" />
+      <Button fx:id="InformationAnalysis" layoutX="368.0" layoutY="251.0" mnemonicParsing="false" onAction="#AnalyzeInformation" prefHeight="76.0" prefWidth="126.0" text="健康信息分析" />
+   </children>
+</Pane>

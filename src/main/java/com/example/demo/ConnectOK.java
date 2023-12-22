@@ -18,7 +18,9 @@ public class ConnectOK
     {
         Stage stage = (Stage) confirm.getScene().getWindow();
         stage.close();
-        Login login = new Login();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+        stage.setScene(new Scene(fxmlLoader.load(), 600, 400));
+        stage.setTitle("Login");
+        stage.show();
     }
-
 }

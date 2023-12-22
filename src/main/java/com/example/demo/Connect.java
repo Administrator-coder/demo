@@ -24,7 +24,7 @@ public class Connect
         {
             //创建等待连接页面
             Stage wait=new Stage();
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("WaitStage.fxml"));
+            FXMLLoader loader =new FXMLLoader(getClass().getResource("WaitStage.fxml"));
             wait.setTitle("等待连接");
             wait.initStyle(StageStyle.UNDECORATED);
             wait.setScene(new Scene(loader.load()));
@@ -33,7 +33,7 @@ public class Connect
             {
                 try
                 {
-                    socket = new Socket("127.0.0.1", 666);
+                    socket = new Socket("127.0.0.1", 9099);
                     break;
                 }
                 catch (Exception e)
@@ -47,16 +47,15 @@ public class Connect
             outToServer = socket.getOutputStream();
             out = new DataOutputStream(outToServer);
             loader = new FXMLLoader(getClass().getResource("ConnectSuccess.fxml"));
-            Stage success=new Stage();
+            Stage success = new Stage();
             success.setTitle("连接成功");
             success.setScene(new Scene(loader.load()));
             System.out.println("连接成功");
             success.show();//创建登录成功页面
-
         }
         catch (Exception e)
         {
-
+            e.printStackTrace();
         }
     }
     public Connect(){
@@ -68,8 +67,6 @@ public class Connect
     }
     public String getMessage() throws Exception
     {
-        String res=in.readUTF();
-        System.out.println(res);
-        return res;
+        return in.readUTF();
     }
 }

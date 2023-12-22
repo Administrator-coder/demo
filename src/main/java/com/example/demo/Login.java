@@ -9,10 +9,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class Login extends Application
+public class Login
 {
     @FXML
     private Button login;
+
+    @FXML
+    private Button register;
 
     @FXML
     private PasswordField password;
@@ -23,7 +26,7 @@ public class Login extends Application
     {
         try
         {
-            Main.connect.sendMessage("login");
+            Main.connect.sendMessage("loginRequest");
             Main.connect.sendMessage(user);
             Main.connect.sendMessage(pass);
         }
@@ -32,9 +35,9 @@ public class Login extends Application
             e.printStackTrace();
         }
     }
-    boolean getRequest() throws Exception
+    String getRequest() throws Exception
     {
-        return Main.connect.getMessage().equals("true");
+        return Main.connect.getMessage();
     }
     @FXML
     void onLogin(ActionEvent event)
@@ -45,13 +48,23 @@ public class Login extends Application
         try
         {
             loginRequest(user, pass);
-            if (getRequest())
+            if (getRequest().equals("true"))
             {
                 System.out.println("Login successful");
+                ((Stage) login.getScene().getWindow()).close();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("MainStage.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("健康信息管理");
+                stage.setScene(new Scene(loader.load()));
+                stage.show();
             }
             else
             {
                 System.out.println("Login failed");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginFailed.fxml"));
+                Stage stage = new Stage();
+                stage.setScene(new Scene(loader.load()));
+                stage.show();
             }
         }
         catch (Exception e)
@@ -59,15 +72,13 @@ public class Login extends Application
             e.printStackTrace();
         }
     }
-    public void start(Stage stage) throws Exception
+    @FXML
+    void onRegister(ActionEvent event) throws Exception
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
-        stage.setScene(new Scene(fxmlLoader.load(), 600, 400));
-        stage.setTitle("Login");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("注册");
+        stage.setScene(new Scene(loader.load()));
         stage.show();
-    }
-    public static void main(String[] args)
-    {
-        launch(args);
     }
 }
